@@ -1,192 +1,73 @@
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TextPolish | Risposte per il Customer Care</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="20 modelli gratuiti per email e customer care. Personalizza il tono, pulisci il testo e copia la risposta. Nessuna registrazione.">
+<meta name="color-scheme" content="light"><title>TextPolish 2.0 — Le parole giuste, in meno tempo</title>
 <style>
-:root {
-  --blue: #174ea6;
-  --orange: #ed8b32;
-  --bg: #f3f6fb;
-  --text: #192b45;
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  padding: 24px 14px;
-  background: var(--bg);
-  color: var(--text);
-  font: 16px/1.5 Arial, sans-serif;
-}
-main {
-  max-width: 760px;
-  margin: auto;
-  background: white;
-  padding: 26px;
-  border-radius: 18px;
-  box-shadow: 0 8px 32px #182b4512;
-}
-header { border-bottom: 3px solid var(--orange); margin-bottom: 22px; }
-h1 { color: var(--blue); margin-bottom: 4px; }
-h2 { font-size: 19px; margin-top: 24px; }
-label { display: block; font-weight: bold; margin: 14px 0 6px; }
-input, select, textarea, button {
-  width: 100%;
-  font: inherit;
-  padding: 12px;
-  border-radius: 9px;
-}
-input, select, textarea { border: 1px solid #cbd5e1; background: white; }
-textarea { min-height: 105px; resize: vertical; }
-button {
-  border: 0;
-  cursor: pointer;
-  font-weight: bold;
-  margin-top: 12px;
-}
-.primary { background: var(--blue); color: white; }
-.secondary { background: #eaf0fa; color: var(--blue); }
-#output {
-  background: #f6f8fc;
-  border: 1px solid #dce4f0;
-  border-radius: 10px;
-  padding: 16px;
-  min-height: 130px;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-}
-.small { color: #58677a; font-size: 13px; }
-.tag {
-  display: inline-block;
-  background: #fff1e2;
-  color: #85450c;
-  padding: 4px 9px;
-  border-radius: 20px;
-  font-size: 12px;
-}
-</style>
-</head>
+:root{--ink:#192d38;--muted:#536973;--accent:#146b57;--line:#d7e2dd;--bg:#f4f7f3}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,sans-serif}header,main,footer{max-width:1180px;margin:auto;padding:24px}header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}.brand{font-weight:800;font-size:24px;letter-spacing:-1px}.badge{font-size:12px;background:#dcebe1;color:#205840;border-radius:30px;padding:5px 10px;letter-spacing:0;vertical-align:middle}.local{font-size:13px;color:var(--muted)}.hero{padding:28px 0}h1{font-size:clamp(30px,4vw,46px);line-height:1.15;letter-spacing:-1.5px;margin:8px 0 14px;max-width:740px}p{margin:8px 0;color:var(--muted)}.eyebrow{font-size:12px;letter-spacing:2px;font-weight:750;color:var(--accent)}.grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px;box-shadow:0 8px 30px #233a2710}h2{font-size:21px;margin:0 0 20px}label,legend{font-size:14px;font-weight:650}label{display:block;margin:16px 0 6px}input,select,textarea,button{font:inherit}input,select,textarea{width:100%;border:1px solid #a8bcb3;border-radius:10px;background:#fff;color:var(--ink);padding:11px 12px}textarea{resize:vertical;line-height:1.65;min-height:110px}input:focus,select:focus,textarea:focus{outline:3px solid #b7ddcc;outline-offset:2px}button:focus-visible,a:focus-visible{outline:3px solid #146b57;outline-offset:3px}.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}.hint{font-size:12px;color:var(--muted);margin-top:5px}fieldset{border:0;padding:0;margin:20px 0}.tones{display:flex;gap:8px;margin-top:8px}.tone{flex:1;position:relative}.tone input{position:absolute;opacity:0;width:1px}.tone span{display:block;text-align:center;padding:9px 5px;border:1px solid #a8bcb3;border-radius:10px;cursor:pointer;font-size:14px}.tone input:checked+span{background:#e4f1e9;border-color:var(--accent);color:#0c543f}.tone input:focus-visible+span{outline:3px solid #b7ddcc}.tone label{margin:0}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}button{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:10px;padding:10px 16px;cursor:pointer;font-weight:650}button:hover{background:#edf3ee}.primary{background:var(--accent);color:#fff;border-color:var(--accent)}.primary:hover{background:#0c5343}.wide{width:100%}#preview{min-height:390px}#subject{font-weight:600}.preview-head{display:flex;justify-content:space-between;gap:12px;align-items:center}.preview-head h2{margin:0}.dot{color:var(--accent);font-size:12px}.note{background:#edf3ee;border-radius:10px;padding:12px;font-size:13px;margin-top:18px}.status{min-height:26px;margin-top:12px;font-size:14px;color:#15533e}.count{font-size:12px;color:var(--muted);text-align:right}.privacy{margin:24px 0 0;font-size:13px}footer{font-size:12px;color:var(--muted);padding-top:0}noscript{display:block;padding:20px;background:#fff0da}@media(max-width:760px){.grid{grid-template-columns:1fr}.card{padding:20px}header,main,footer{padding-left:16px;padding-right:16px}.local{max-width:140px;text-align:right}.row{grid-template-columns:1fr}#preview{min-height:320px}.hero{padding:22px 0}}
+</style></head>
 <body>
-<main>
-  <header>
-    <span class="tag">VERSIONE DEMO GRATUITA</span>
-    <h1>TextPolish</h1>
-    <p>Prepara risposte professionali ai tuoi clienti in pochi secondi.</p>
-  </header>
-
-  <label for="name">Nome del cliente (facoltativo)</label>
-  <input id="name" placeholder="Es. Marco">
-
-  <label for="type">Tipo di risposta</label>
-  <select id="type">
-    <option value="resolved">Problema risolto</option>
-    <option value="check">Problema in verifica</option>
-    <option value="info">Richiesta di informazioni</option>
-    <option value="delay">Ritardo nella risposta</option>
-    <option value="complaint">Gestione reclamo</option>
-    <option value="update">Aggiornamento al cliente</option>
-  </select>
-
-  <label for="details">Dettagli da includere</label>
-  <textarea id="details" placeholder="Es. abbiamo verificato la linea e la connessione è tornata stabile."></textarea>
-
-  <label for="tone">Tono del messaggio</label>
-  <select id="tone">
-    <option value="formal">Formale</option>
-    <option value="friendly">Cordiale</option>
-    <option value="short">Breve e diretto</option>
-  </select>
-
-  <button class="primary" onclick="generate()">Genera risposta</button>
-
-  <h2>La tua risposta</h2>
-  <div id="output" aria-live="polite">La risposta pronta da copiare apparirà qui.</div>
-  <button class="secondary" onclick="copyResult()">Copia risposta</button>
-  <button class="secondary" onclick="clearForm()">Nuovo messaggio</button>
-
-  <p class="small">
-    TextPolish elabora i dati nel browser. Non inserire password,
-    dati personali sensibili o informazioni riservate dei clienti.
-    Controlla sempre il messaggio prima di inviarlo.
-  </p>
-</main>
-
+<header><div class="brand">TextPolish <span class="badge">2.0</span></div><div class="local">Gratuito. Senza registrazione.</div></header>
+<main><div class="hero"><div class="eyebrow">IL TUO ASSISTENTE DI SCRITTURA</div><h1>Risposte curate.<br>Più tempo per i tuoi clienti.</h1><p>Scegli un modello, aggiungi i dettagli e trova il tono giusto.</p></div>
+<noscript>Attiva JavaScript nel browser per utilizzare TextPolish. Non sono necessari servizi esterni.</noscript>
+<div class="grid"><section class="card" aria-labelledby="compose-title"><h2 id="compose-title">01 / Prepara il messaggio</h2>
+<label for="template">Come possiamo aiutarti?</label><select id="template"></select>
+<fieldset><legend>Tono della risposta</legend><div class="tones"><div class="tone"><label><input type="radio" name="tone" value="formal" checked><span>Formale</span></label></div><div class="tone"><label><input type="radio" name="tone" value="friendly"><span>Cordiale</span></label></div><div class="tone"><label><input type="radio" name="tone" value="short"><span>Breve</span></label></div></div></fieldset>
+<div class="row"><div><label for="name">Nome del destinatario</label><input id="name" placeholder="Es. Andrea" maxlength="100" autocomplete="off"></div><div><label for="reference">Riferimento</label><input id="reference" placeholder="Es. ordine #1042" maxlength="150" autocomplete="off"></div></div>
+<label for="details">Dettagli da aggiungere</label><textarea id="details" placeholder="Scrivi qui informazioni confermate, istruzioni o prossimi passi…" aria-describedby="details-help"></textarea><div class="hint" id="details-help">Verranno inseriti come paragrafo, senza cambiare il significato.</div>
+<div class="actions"><button id="clean-input" type="button">Pulisci i dettagli</button></div>
+<label for="signature">La tua firma</label><textarea id="signature" rows="2" placeholder="Nome e cognome&#10;Servizio clienti · Azienda" style="min-height:80px"></textarea><div class="hint">Resta solo in questa pagina: nessun salvataggio automatico.</div>
+<button id="generate" class="primary wide" type="button" style="margin-top:22px">Crea la risposta →</button>
+<div class="note">20 modelli, 3 toni. Testi predefiniti e modificabili: controlla sempre i dettagli prima di inviare.</div></section>
+<section class="card" aria-labelledby="preview-title"><div class="preview-head"><h2 id="preview-title">02 / Il tuo messaggio</h2><span class="dot">● Modificabile</span></div>
+<label for="subject">Oggetto</label><input id="subject" maxlength="300">
+<label for="preview">Anteprima email</label><textarea id="preview" spellcheck="true" aria-describedby="preview-help"></textarea><div class="hint" id="preview-help">Puoi modificare liberamente oggetto e testo prima di copiarli.</div><div class="count" id="count"></div>
+<div class="actions"><button id="copy" class="primary" type="button">Copia email</button><button id="copy-body" type="button">Copia solo testo</button><button id="clean-preview" type="button">Pulisci testo</button></div>
+<button id="undo" type="button" hidden style="margin-top:10px">Annulla ultima modifica automatica</button><div id="status" class="status" role="status" aria-live="polite"></div>
+<div class="note">La pulizia sistema spazi, rientri e righe vuote. Non verifica grammatica, dati, link o correttezza delle informazioni.</div></section></div>
+<p class="privacy">Tutto viene elaborato nel browser. Nessuna API, pubblicità, analisi del traffico o invio dei testi a server. Funziona anche offline dopo aver scaricato il file.</p></main><footer>TextPolish 2.0 · Scritto con cura, pronto per essere personalizzato.</footer>
 <script>
-function generate() {
-  const name = document.getElementById("name").value.trim();
-  const details = document.getElementById("details").value.trim();
-  const type = document.getElementById("type").value;
-  const tone = document.getElementById("tone").value;
-  const output = document.getElementById("output");
-
-  const greeting = tone === "friendly"
-    ? "Ciao" : tone === "short" ? "Buongiorno" : "Gentile";
-
-  const opening = name
-    ? greeting + " " + name + (tone === "formal" ? "," : "!")
-    : tone === "friendly" ? "Ciao!" : "Buongiorno,";
-
-  const templates = {
-    resolved: details
-      ? "Ti confermiamo che la verifica è stata completata. " + details
-      : "Ti confermiamo che la verifica è stata completata e il problema risulta risolto.",
-    check: details
-      ? "Stiamo effettuando le verifiche necessarie. " + details
-      : "Stiamo effettuando le verifiche necessarie e ti aggiorneremo appena avremo novità.",
-    info: details
-      ? "Per poter procedere abbiamo bisogno delle seguenti informazioni: " + details
-      : "Per poter procedere, avremmo bisogno di qualche informazione aggiuntiva. Puoi rispondere a questo messaggio con i dettagli utili?",
-    delay: details
-      ? "Ci scusiamo per l'attesa. " + details
-      : "Ci scusiamo per l'attesa e ti ringraziamo per la pazienza. Stiamo lavorando per fornirti un riscontro.",
-    complaint: details
-? "Abbiamo preso in carico la sua segnalazione e comprendiamo il disagio riscontrato. " + details
-: "Abbiamo preso in carico il reclamo e stiamo effettuando le verifiche necessarie per fornire un riscontro.",
-    update: details
-      ? "Ti aggiorniamo sullo stato della richiesta: " + details
-      : "Ti contattiamo per aggiornarti sullo stato della tua richiesta. Ti forniremo ulteriori informazioni appena disponibili."
-  };
-
-  let message = opening + "\n\n" + templates[type];
-
-  if (tone === "formal") {
-    message += "\n\nRestiamo a disposizione per eventuali chiarimenti.\nCordiali saluti.";
-  } else if (tone === "friendly") {
-    message += "\n\nGrazie per la collaborazione! Se hai bisogno di altro, siamo qui per aiutarti.";
-  } else {
-    message += "\n\nCordiali saluti.";
-  }
-
-  output.textContent = message;
-}
-
-async function copyResult() {
-  const text = document.getElementById("output").textContent;
-
-  try {
-    await navigator.clipboard.writeText(text);
-    alert("Risposta copiata!");
-  } catch (error) {
-    const area = document.createElement("textarea");
-    area.value = text;
-    document.body.appendChild(area);
-    area.select();
-    const copied = document.execCommand("copy");
-    area.remove();
-    alert(copied ? "Risposta copiata!" : "Seleziona e copia il testo manualmente.");
-  }
-}
-
-function clearForm() {
-  document.getElementById("name").value = "";
-  document.getElementById("details").value = "";
-  document.getElementById("type").selectedIndex = 0;
-  document.getElementById("tone").selectedIndex = 0;
-  document.getElementById("output").textContent =
-    "La risposta pronta da copiare apparirà qui.";
-}
-</script>
-</body>
-</html>
+'use strict';
+// Ogni modello contiene tre corpi indipendenti: formale, cordiale e breve.
+const templates = [
+['Presa in carico','Richiesta ricevuta','La Sua richiesta è stata presa in carico. Le forniremo un aggiornamento non appena saranno disponibili ulteriori informazioni.','Grazie per averci scritto! Abbiamo preso in carico la tua richiesta e ti aggiorneremo appena avremo novità.','Richiesta ricevuta e presa in carico. Seguirà un aggiornamento.'],
+['Richiesta di informazioni','Informazioni per procedere','Per poter procedere con la Sua richiesta, abbiamo bisogno delle informazioni indicate di seguito. La ringraziamo per la collaborazione.','Per aiutarti al meglio ci servono ancora alcune informazioni. Trovi qui sotto cosa inviarci: grazie per la collaborazione!','Per procedere servono le informazioni indicate di seguito.'],
+['Gestione reclamo','Presa in carico del reclamo','Ci dispiace per il disagio segnalato. Abbiamo preso in carico il Suo reclamo per le opportune verifiche e Le comunicheremo gli esiti disponibili.','Ci dispiace per il disagio. Abbiamo ricevuto il tuo reclamo e faremo le verifiche necessarie per darti una risposta chiara.','Reclamo ricevuto. Ci dispiace per il disagio; procederemo con le verifiche.'],
+['Ritardo nella risposta','Aggiornamento sulla richiesta','Ci scusiamo per il ritardo nel riscontro alla Sua richiesta. La ringraziamo per l’attesa e riportiamo di seguito le informazioni disponibili.','Scusaci per l’attesa e grazie per la pazienza! Ecco le informazioni disponibili sulla tua richiesta.','Ci scusiamo per l’attesa. Di seguito l’aggiornamento disponibile.'],
+['Aggiornamento pratica','Stato della pratica','Le scriviamo per aggiornarLa sullo stato della Sua pratica. Di seguito trova le informazioni attualmente disponibili.','Ecco un aggiornamento sulla tua pratica. Trovi qui sotto le novità e gli eventuali prossimi passi.','Di seguito lo stato aggiornato della pratica.'],
+['Conferma ordine','Conferma ricezione ordine','Confermiamo la ricezione del Suo ordine. Riportiamo di seguito i dettagli disponibili; eventuali aggiornamenti saranno comunicati separatamente.','Grazie per il tuo ordine! Lo abbiamo ricevuto: ecco i dettagli disponibili e le informazioni utili.','Ordine ricevuto. Di seguito i dettagli disponibili.'],
+['Aggiornamento spedizione','Informazioni sulla spedizione','Le forniamo di seguito le informazioni disponibili sulla spedizione. La invitiamo a consultare gli eventuali riferimenti di tracciamento indicati.','Ecco le informazioni sulla tua spedizione! Se è presente un link di tracciamento, puoi usarlo per seguire gli aggiornamenti.','Di seguito le informazioni disponibili sulla spedizione e sul tracciamento.'],
+['Ritardo consegna','Aggiornamento sulla consegna','Ci dispiace per il ritardo nella consegna. Stiamo verificando la situazione e riportiamo di seguito gli aggiornamenti disponibili, senza confermare date non ancora verificate.','Ci dispiace che la consegna stia richiedendo più tempo del previsto. Ecco cosa sappiamo al momento: ti aggiorneremo quando avremo informazioni confermate.','Consegna in ritardo: ci dispiace per il disagio. Di seguito gli aggiornamenti confermati.'],
+['Istruzioni per il reso','Come richiedere il reso','Per avviare la valutazione della Sua richiesta di reso, La invitiamo a seguire le indicazioni riportate di seguito. Condizioni e passaggi applicabili saranno verificati sulla base del Suo acquisto.','Ti aiutiamo con la richiesta di reso. Qui sotto trovi i passaggi da seguire; verificheremo insieme le condizioni applicabili al tuo acquisto.','Per richiedere il reso, seguire i passaggi indicati di seguito. Le condizioni applicabili sono da verificare.'],
+['Aggiornamento rimborso','Stato della richiesta di rimborso','Le comunichiamo di seguito lo stato verificato della Sua richiesta di rimborso. Eventuali importi e tempi sono indicati solo se confermati.','Ecco un aggiornamento sulla tua richiesta di rimborso. Qui sotto trovi lo stato e gli eventuali tempi confermati.','Di seguito lo stato verificato della richiesta di rimborso.'],
+['Prodotto danneggiato','Segnalazione prodotto danneggiato','Ci dispiace che il prodotto ricevuto presenti un danno. Per valutare la soluzione appropriata, La invitiamo a inviarci una descrizione del problema e, se possibile, fotografie del prodotto e dell’imballaggio.','Ci dispiace per il prodotto danneggiato. Puoi inviarci una descrizione e, se possibile, qualche foto del prodotto e dell’imballaggio? Ci aiuteranno a valutare come procedere.','Per verificare il danno, inviare una descrizione e, se possibile, foto del prodotto e dell’imballaggio.'],
+['Articolo non disponibile','Disponibilità articolo','L’articolo richiesto non risulta attualmente disponibile. Di seguito riportiamo eventuali alternative o informazioni verificate sul riassortimento.','Al momento l’articolo che cerchi non è disponibile. Se ci sono alternative o novità confermate sul riassortimento, le trovi qui sotto.','Articolo al momento non disponibile. Di seguito eventuali alternative o aggiornamenti confermati.'],
+['Assistenza tecnica','Supporto tecnico','Per analizzare il problema segnalato, La invitiamo a descrivere i passaggi che lo causano e a riportare eventuali messaggi di errore. Non è necessario comunicare password o codici di accesso.','Ti aiutiamo volentieri a capire cosa succede. Raccontaci i passaggi che causano il problema e gli eventuali messaggi di errore. Non inviarci password o codici di accesso.','Per la verifica servono passaggi del problema e messaggi di errore. Non inviare password o codici di accesso.'],
+['Problema risolto','Esito della segnalazione','In seguito alle verifiche effettuate, il problema segnalato risulta risolto. La invitiamo a verificare il corretto funzionamento e a comunicarci eventuali ulteriori difficoltà.','Dalle nostre verifiche il problema risulta risolto! Puoi controllare che ora funzioni tutto? Se incontri ancora difficoltà, scrivici pure.','Il problema risulta risolto dalle verifiche effettuate. Segnalare eventuali ulteriori difficoltà.'],
+['Conferma appuntamento','Conferma appuntamento','Confermiamo l’appuntamento secondo i dettagli riportati di seguito. Qualora avesse necessità di modificarlo, La invitiamo a contattarci.','Ti confermiamo l’appuntamento: trovi tutti i dettagli qui sotto. Se hai bisogno di cambiarlo, scrivici pure!','Appuntamento confermato secondo i dettagli di seguito. Contattarci per eventuali modifiche.'],
+['Spostamento appuntamento','Richiesta di modifica appuntamento','Le chiediamo di concordare una nuova data per l’appuntamento. Ci scusiamo per il disagio e riportiamo di seguito le eventuali disponibilità da confermare.','Avremmo bisogno di concordare un nuovo appuntamento. Scusaci per il cambio: ecco le disponibilità proposte, da confermare insieme.','È necessario concordare un nuovo appuntamento. Di seguito le disponibilità proposte, da confermare.'],
+['Invio preventivo','Preventivo richiesto','In riferimento alla Sua richiesta, riportiamo di seguito la nostra proposta. Restiamo a disposizione per chiarimenti su importi, condizioni e validità indicati.','Grazie per il tuo interesse! Ecco la nostra proposta. Se hai domande su prezzi, condizioni o validità, siamo qui per aiutarti.','Di seguito il preventivo richiesto. Restiamo disponibili per chiarimenti sulle condizioni indicate.'],
+['Promemoria pagamento','Verifica stato pagamento','Dalle informazioni attualmente disponibili, il pagamento indicato risulta da verificare. Qualora avesse già provveduto, La invitiamo a comunicarcelo per consentire il controllo.','Ti scriviamo per verificare il pagamento indicato qui sotto. Se hai già pagato, faccelo sapere così possiamo controllare. Grazie!','Il pagamento indicato è da verificare. Se già effettuato, comunicarlo per il controllo.'],
+['Sollecito di riscontro','Riscontro sulla richiesta','Torniamo a contattarLa in merito alla precedente comunicazione. Un Suo riscontro ci consentirà di procedere con le attività indicate di seguito.','Ti riscriviamo per sapere se hai avuto modo di leggere il nostro messaggio. Quando puoi, un tuo riscontro ci aiuterà a procedere.','In attesa di riscontro sulla precedente comunicazione per poter procedere.'],
+['Chiusura e ringraziamento','Chiusura della richiesta','Concludiamo la gestione della Sua richiesta e La ringraziamo per la collaborazione. Qualora avesse ulteriori necessità, potrà contattarci nuovamente.','Grazie per averci contattato e per la collaborazione! Chiudiamo questa richiesta, ma se ti serve ancora aiuto puoi scriverci quando vuoi.','Richiesta chiusa. Grazie per la collaborazione; restiamo disponibili per ulteriori necessità.']
+];
+const $=id=>document.getElementById(id);
+const clean=text=>text.replace(/\r\n?/g,'\n').replace(/[\u00a0\u202f]/g,' ').split('\n').map(line=>line.replace(/[\t ]+/g,' ').trim()).join('\n').replace(/\n{3,}/g,'\n\n').trim();
+let previous=null;
+function status(message){$('status').textContent=message;}
+function count(){const t=$('preview').value.trim();$('count').textContent=`${t ? t.split(/\s+/u).length : 0} parole · ${$('preview').value.length} caratteri`;}
+function snapshot(){previous={subject:$('subject').value,body:$('preview').value};$('undo').hidden=false;}
+function generate(initial=false){if(!initial)snapshot();const t=templates[Number($('template').value)];const tone=document.querySelector('input[name="tone"]:checked').value;const name=clean($('name').value).replace(/\n/g,' ');const ref=clean($('reference').value).replace(/\n/g,' ');const detail=clean($('details').value);const signature=clean($('signature').value);const index={formal:2,friendly:3,short:4}[tone];const greeting=tone==='formal'?(name?`Gentile ${name},`:'Gentile Cliente,'):tone==='friendly'?(name?`Ciao ${name},`:'Buongiorno,'):(name?`Buongiorno ${name},`:'Buongiorno,');const closing={formal:'Cordiali saluti,',friendly:'Un saluto,',short:'Grazie,'}[tone];$('subject').value=t[1]+(ref?' — '+ref:'');$('preview').value=[greeting,t[index],ref?'Riferimento: '+ref:'',detail,closing,signature].filter(Boolean).join('\n\n');count();if(!initial)status('Risposta creata. Puoi modificarla prima di copiarla.');}
+templates.forEach((t,i)=>{const o=document.createElement('option');o.value=i;o.textContent=`${String(i+1).padStart(2,'0')} · ${t[0]}`;$('template').append(o);});
+$('generate').addEventListener('click',()=>generate());
+$('clean-input').addEventListener('click',()=>{$('details').value=clean($('details').value);status('Spazi e righe vuote dei dettagli sistemati.');});
+$('clean-preview').addEventListener('click',()=>{snapshot();$('preview').value=clean($('preview').value);$('subject').value=clean($('subject').value).replace(/\n/g,' ');count();status('Formattazione pulita. Il contenuto è invariato.');});
+$('undo').addEventListener('click',()=>{if(!previous)return;$('subject').value=previous.subject;$('preview').value=previous.body;previous=null;$('undo').hidden=true;count();status('Ultima modifica automatica annullata.');});
+$('preview').addEventListener('input',count);
+for(const id of ['template','name','reference','details','signature'])$(id).addEventListener('input',()=>status('Impostazioni modificate: premi “Crea la risposta” per applicarle.'));
+document.querySelectorAll('input[name="tone"]').forEach(el=>el.addEventListener('change',()=>status('Tono modificato: premi “Crea la risposta” per applicarlo.')));
+async function copy(withSubject){const body=$('preview').value;if(!body.trim()){status('Scrivi o crea una risposta prima di copiarla.');return;}const text=withSubject&&$('subject').value.trim()?`Oggetto: ${$('subject').value.trim()}\n\n${body}`:body;try{if(!navigator.clipboard||!window.isSecureContext)throw Error('clipboard');await navigator.clipboard.writeText(text);status(withSubject?'Email copiata, incluso l’oggetto.':'Testo copiato.');}catch{const temp=document.createElement('textarea');temp.value=text;temp.setAttribute('aria-label','Testo da copiare');temp.style.cssText='position:fixed;top:0;left:0;width:1px;height:1px;opacity:0';document.body.append(temp);temp.focus();temp.select();let ok=false;try{ok=document.execCommand('copy');}catch{}temp.remove();if(ok){status('Copiato negli appunti.');}else{$('preview').focus();$('preview').select();status('Copia automatica non disponibile. Il testo è selezionato: usa Ctrl+C (⌘C su Mac) o Copia dal menu. Copia l’oggetto separatamente.');}}}
+$('copy').addEventListener('click',()=>copy(true));$('copy-body').addEventListener('click',()=>copy(false));generate(true);
+</script></body></html>
