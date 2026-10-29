@@ -85,6 +85,7 @@ button {
     <option value="check">Problema in verifica</option>
     <option value="info">Richiesta di informazioni</option>
     <option value="delay">Ritardo nella risposta</option>
+    <option value="complaint">Gestione reclamo</option>
     <option value="update">Aggiornamento al cliente</option>
   </select>
 
@@ -140,6 +141,9 @@ function generate() {
     delay: details
       ? "Ci scusiamo per l'attesa. " + details
       : "Ci scusiamo per l'attesa e ti ringraziamo per la pazienza. Stiamo lavorando per fornirti un riscontro.",
+    complaint: details
+? "Abbiamo preso in carico la sua segnalazione e comprendiamo il disagio riscontrato. " + details
+: "Abbiamo preso in carico il reclamo e stiamo effettuando le verifiche necessarie per fornire un riscontro.",
     update: details
       ? "Ti aggiorniamo sullo stato della richiesta: " + details
       : "Ti contattiamo per aggiornarti sullo stato della tua richiesta. Ti forniremo ulteriori informazioni appena disponibili."
