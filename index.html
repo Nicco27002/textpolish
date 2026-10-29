@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="it">
 <head>
@@ -27,7 +26,7 @@
 <div class="actions"><button id="copy" class="primary" type="button">Copia email</button><button id="copy-body" type="button">Copia solo testo</button><button id="clean-preview" type="button">Pulisci testo</button></div>
 <button id="undo" type="button" hidden style="margin-top:10px">Annulla ultima modifica automatica</button><div id="status" class="status" role="status" aria-live="polite"></div>
 <div class="note">La pulizia sistema spazi, rientri e righe vuote. Non verifica grammatica, dati, link o correttezza delle informazioni.</div></section></div>
-<p class="privacy">Tutto viene elaborato nel browser. Nessuna API, pubblicità, analisi del traffico o invio dei testi a server. Funziona anche offline dopo aver scaricato il file.</p></main><footer>TextPolish 2.0 · Scritto con cura, pronto per essere personalizzato.</footer>
+<p class="privacy">I testi vengono elaborati nel browser: nomi, firme e contenuti delle email non vengono inviati a GoatCounter. Sul sito online utilizziamo GoatCounter per contare visite, risposte generate e copie riuscite, senza cookie di analisi. Il servizio riceve dati tecnici della connessione, come indirizzo IP e browser, per elaborare le statistiche; non conserva gli indirizzi IP nel database. Non inviamo parametri dell’indirizzo né provenienza della visita. <a href="https://www.goatcounter.com/help/privacy" target="_blank" rel="noopener noreferrer">Privacy di GoatCounter</a>. Nessuna pubblicità. Le funzioni di scrittura restano disponibili offline e quando le statistiche sono bloccate.</p></main><footer>TextPolish 2.0 · Scritto con cura, pronto per essere personalizzato.</footer>
 <script>
 'use strict';
 // Ogni modello contiene tre corpi indipendenti: formale, cordiale e breve.
@@ -53,6 +52,19 @@ const templates = [
 ['Sollecito di riscontro','Riscontro sulla richiesta','Torniamo a contattarLa in merito alla precedente comunicazione. Un Suo riscontro ci consentirà di procedere con le attività indicate di seguito.','Ti riscriviamo per sapere se hai avuto modo di leggere il nostro messaggio. Quando puoi, un tuo riscontro ci aiuterà a procedere.','In attesa di riscontro sulla precedente comunicazione per poter procedere.'],
 ['Chiusura e ringraziamento','Chiusura della richiesta','Concludiamo la gestione della Sua richiesta e La ringraziamo per la collaborazione. Qualora avesse ulteriori necessità, potrà contattarci nuovamente.','Grazie per averci contattato e per la collaborazione! Chiudiamo questa richiesta, ma se ti serve ancora aiuto puoi scriverci quando vuoi.','Richiesta chiusa. Grazie per la collaborazione; restiamo disponibili per ulteriori necessità.']
 ];
+// Analytics runs only on the public production page. Payloads never use form values.
+const analyticsEnabled=location.protocol==='https:' && location.hostname==='nicco27002.github.io' && /^\/textpolish\/(?:index\.html)?$/.test(location.pathname);
+const usageEvents={'risposta-generata':'Risposta generata','email-copiata':'Email copiata','testo-copiato':'Testo copiato'};
+let analyticsReady=false;const analyticsQueue=[];
+function sendUsage(name){try{window.goatcounter.count({path:name,title:usageEvents[name],event:true,no_session:true,referrer:''});}catch{/* Statistics must never interrupt writing. */}}
+function trackUsage(name){if(!analyticsEnabled || !Object.hasOwn(usageEvents,name))return;if(analyticsReady)sendUsage(name);else if(analyticsQueue.length<100)analyticsQueue.push(name);}
+function startAnalytics(){
+  if(!analyticsEnabled)return;
+  window.goatcounter={no_onload:true,no_events:true,path:'/textpolish/',title:'TextPolish 2.0',referrer:''};
+  const script=document.createElement('script');script.async=true;script.src='https://gc.zgo.at/count.js';script.dataset.goatcounter='https://nicco27002.goatcounter.com/count';script.referrerPolicy='no-referrer';
+  script.onload=()=>{try{if(typeof window.goatcounter.count!=='function')return;window.goatcounter.count({path:'/textpolish/',title:'TextPolish 2.0',referrer:''});analyticsReady=true;analyticsQueue.splice(0).forEach(sendUsage);}catch{analyticsQueue.length=0;}};
+  script.onerror=()=>{analyticsQueue.length=0;};document.head.append(script);
+}
 const $=id=>document.getElementById(id);
 const clean=text=>text.replace(/\r\n?/g,'\n').replace(/[\u00a0\u202f]/g,' ').split('\n').map(line=>line.replace(/[\t ]+/g,' ').trim()).join('\n').replace(/\n{3,}/g,'\n\n').trim();
 let previous=null;
@@ -61,13 +73,13 @@ function count(){const t=$('preview').value.trim();$('count').textContent=`${t ?
 function snapshot(){previous={subject:$('subject').value,body:$('preview').value};$('undo').hidden=false;}
 function generate(initial=false){if(!initial)snapshot();const t=templates[Number($('template').value)];const tone=document.querySelector('input[name="tone"]:checked').value;const name=clean($('name').value).replace(/\n/g,' ');const ref=clean($('reference').value).replace(/\n/g,' ');const detail=clean($('details').value);const signature=clean($('signature').value);const index={formal:2,friendly:3,short:4}[tone];const greeting=tone==='formal'?(name?`Gentile ${name},`:'Gentile Cliente,'):tone==='friendly'?(name?`Ciao ${name},`:'Buongiorno,'):(name?`Buongiorno ${name},`:'Buongiorno,');const closing={formal:'Cordiali saluti,',friendly:'Un saluto,',short:'Grazie,'}[tone];$('subject').value=t[1]+(ref?' — '+ref:'');$('preview').value=[greeting,t[index],ref?'Riferimento: '+ref:'',detail,closing,signature].filter(Boolean).join('\n\n');count();if(!initial)status('Risposta creata. Puoi modificarla prima di copiarla.');}
 templates.forEach((t,i)=>{const o=document.createElement('option');o.value=i;o.textContent=`${String(i+1).padStart(2,'0')} · ${t[0]}`;$('template').append(o);});
-$('generate').addEventListener('click',()=>generate());
+$('generate').addEventListener('click',()=>{generate();trackUsage('risposta-generata');});
 $('clean-input').addEventListener('click',()=>{$('details').value=clean($('details').value);status('Spazi e righe vuote dei dettagli sistemati.');});
 $('clean-preview').addEventListener('click',()=>{snapshot();$('preview').value=clean($('preview').value);$('subject').value=clean($('subject').value).replace(/\n/g,' ');count();status('Formattazione pulita. Il contenuto è invariato.');});
 $('undo').addEventListener('click',()=>{if(!previous)return;$('subject').value=previous.subject;$('preview').value=previous.body;previous=null;$('undo').hidden=true;count();status('Ultima modifica automatica annullata.');});
 $('preview').addEventListener('input',count);
 for(const id of ['template','name','reference','details','signature'])$(id).addEventListener('input',()=>status('Impostazioni modificate: premi “Crea la risposta” per applicarle.'));
 document.querySelectorAll('input[name="tone"]').forEach(el=>el.addEventListener('change',()=>status('Tono modificato: premi “Crea la risposta” per applicarlo.')));
-async function copy(withSubject){const body=$('preview').value;if(!body.trim()){status('Scrivi o crea una risposta prima di copiarla.');return;}const text=withSubject&&$('subject').value.trim()?`Oggetto: ${$('subject').value.trim()}\n\n${body}`:body;try{if(!navigator.clipboard||!window.isSecureContext)throw Error('clipboard');await navigator.clipboard.writeText(text);status(withSubject?'Email copiata, incluso l’oggetto.':'Testo copiato.');}catch{const temp=document.createElement('textarea');temp.value=text;temp.setAttribute('aria-label','Testo da copiare');temp.style.cssText='position:fixed;top:0;left:0;width:1px;height:1px;opacity:0';document.body.append(temp);temp.focus();temp.select();let ok=false;try{ok=document.execCommand('copy');}catch{}temp.remove();if(ok){status('Copiato negli appunti.');}else{$('preview').focus();$('preview').select();status('Copia automatica non disponibile. Il testo è selezionato: usa Ctrl+C (⌘C su Mac) o Copia dal menu. Copia l’oggetto separatamente.');}}}
-$('copy').addEventListener('click',()=>copy(true));$('copy-body').addEventListener('click',()=>copy(false));generate(true);
+async function copy(withSubject){const body=$('preview').value;if(!body.trim()){status('Scrivi o crea una risposta prima di copiarla.');return;}const text=withSubject&&$('subject').value.trim()?`Oggetto: ${$('subject').value.trim()}\n\n${body}`:body;try{if(!navigator.clipboard||!window.isSecureContext)throw Error('clipboard');await navigator.clipboard.writeText(text);trackUsage(withSubject?'email-copiata':'testo-copiato');status(withSubject?'Email copiata, incluso l’oggetto.':'Testo copiato.');}catch{const temp=document.createElement('textarea');temp.value=text;temp.setAttribute('aria-label','Testo da copiare');temp.style.cssText='position:fixed;top:0;left:0;width:1px;height:1px;opacity:0';document.body.append(temp);temp.focus();temp.select();let ok=false;try{ok=document.execCommand('copy');}catch{}temp.remove();if(ok){trackUsage(withSubject?'email-copiata':'testo-copiato');status('Copiato negli appunti.');}else{$('preview').focus();$('preview').select();status('Copia automatica non disponibile. Il testo è selezionato: usa Ctrl+C (⌘C su Mac) o Copia dal menu. Copia l’oggetto separatamente.');}}}
+$('copy').addEventListener('click',()=>copy(true));$('copy-body').addEventListener('click',()=>copy(false));generate(true);startAnalytics();
 </script></body></html>
