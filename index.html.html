@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TextPolish | Risposte per il Customer Care</title>
+<style>
+:root {
+  --blue: #174ea6;
+  --orange: #ed8b32;
+  --bg: #f3f6fb;
+  --text: #192b45;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 24px 14px;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.5 Arial, sans-serif;
+}
+main {
+  max-width: 760px;
+  margin: auto;
+  background: white;
+  padding: 26px;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px #182b4512;
+}
+header { border-bottom: 3px solid var(--orange); margin-bottom: 22px; }
+h1 { color: var(--blue); margin-bottom: 4px; }
+h2 { font-size: 19px; margin-top: 24px; }
+label { display: block; font-weight: bold; margin: 14px 0 6px; }
+input, select, textarea, button {
+  width: 100%;
+  font: inherit;
+  padding: 12px;
+  border-radius: 9px;
+}
+input, select, textarea { border: 1px solid #cbd5e1; background: white; }
+textarea { min-height: 105px; resize: vertical; }
+button {
+  border: 0;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 12px;
+}
+.primary { background: var(--blue); color: white; }
+.secondary { background: #eaf0fa; color: var(--blue); }
+#output {
+  background: #f6f8fc;
+  border: 1px solid #dce4f0;
+  border-radius: 10px;
+  padding: 16px;
+  min-height: 130px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.small { color: #58677a; font-size: 13px; }
+.tag {
+  display: inline-block;
+  background: #fff1e2;
+  color: #85450c;
+  padding: 4px 9px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="tag">VERSIONE DEMO GRATUITA</span>
+    <h1>TextPolish</h1>
+    <p>Prepara risposte professionali ai tuoi clienti in pochi secondi.</p>
+  </header>
+
+  <label for="name">Nome del cliente (facoltativo)</label>
+  <input id="name" placeholder="Es. Marco">
+
+  <label for="type">Tipo di risposta</label>
+  <select id="type">
+    <option value="resolved">Problema risolto</option>
+    <option value="check">Problema in verifica</option>
+    <option value="info">Richiesta di informazioni</option>
+    <option value="delay">Ritardo nella risposta</option>
+    <option value="update">Aggiornamento al cliente</option>
+  </select>
+
+  <label for="details">Dettagli da includere</label>
+  <textarea id="details" placeholder="Es. abbiamo verificato la linea e la connessione è tornata stabile."></textarea>
+
+  <label for="tone">Tono del messaggio</label>
+  <select id="tone">
+    <option value="formal">Formale</option>
+    <option value="friendly">Cordiale</option>
+    <option value="short">Breve e diretto</option>
+  </select>
+
+  <button class="primary" onclick="generate()">Genera risposta</button>
+
+  <h2>La tua risposta</h2>
+  <div id="output" aria-live="polite">La risposta pronta da copiare apparirà qui.</div>
+  <button class="secondary" onclick="copyResult()">Copia risposta</button>
+  <button class="secondary" onclick="clearForm()">Nuovo messaggio</button>
+
+  <p class="small">
+    TextPolish elabora i dati nel browser. Non inserire password,
+    dati personali sensibili o informazioni riservate dei clienti.
+    Controlla sempre il messaggio prima di inviarlo.
+  </p>
+</main>
+
+<script>
+function generate() {
+  const name = document.getElementById("name").value.trim();
+  const details = document.getElementById("details").value.trim();
+  const type = document.getElementById("type").value;
+  const tone = document.getElementById("tone").value;
+  const output = document.getElementById("output");
+
+  const greeting = tone === "friendly"
+    ? "Ciao" : tone === "short" ? "Buongiorno" : "Gentile";
+
+  const opening = name
+    ? greeting + " " + name + (tone === "formal" ? "," : "!")
+    : tone === "friendly" ? "Ciao!" : "Buongiorno,";
+
+  const templates = {
+    resolved: details
+      ? "Ti confermiamo che la verifica è stata completata. " + details
+      : "Ti confermiamo che la verifica è stata completata e il problema risulta risolto.",
+    check: details
+      ? "Stiamo effettuando le verifiche necessarie. " + details
+      : "Stiamo effettuando le verifiche necessarie e ti aggiorneremo appena avremo novità.",
+    info: details
+      ? "Per poter procedere abbiamo bisogno delle seguenti informazioni: " + details
+      : "Per poter procedere, avremmo bisogno di qualche informazione aggiuntiva. Puoi rispondere a questo messaggio con i dettagli utili?",
+    delay: details
+      ? "Ci scusiamo per l'attesa. " + details
+      : "Ci scusiamo per l'attesa e ti ringraziamo per la pazienza. Stiamo lavorando per fornirti un riscontro.",
+    update: details
+      ? "Ti aggiorniamo sullo stato della richiesta: " + details
+      : "Ti contattiamo per aggiornarti sullo stato della tua richiesta. Ti forniremo ulteriori informazioni appena disponibili."
+  };
+
+  let message = opening + "\n\n" + templates[type];
+
+  if (tone === "formal") {
+    message += "\n\nRestiamo a disposizione per eventuali chiarimenti.\nCordiali saluti.";
+  } else if (tone === "friendly") {
+    message += "\n\nGrazie per la collaborazione! Se hai bisogno di altro, siamo qui per aiutarti.";
+  } else {
+    message += "\n\nCordiali saluti.";
+  }
+
+  output.textContent = message;
+}
+
+async function copyResult() {
+  const text = document.getElementById("output").textContent;
+
+  try {
+    await navigator.clipboard.writeText(text);
+    alert("Risposta copiata!");
+  } catch (error) {
+    const area = document.createElement("textarea");
+    area.value = text;
+    document.body.appendChild(area);
+    area.select();
+    const copied = document.execCommand("copy");
+    area.remove();
+    alert(copied ? "Risposta copiata!" : "Seleziona e copia il testo manualmente.");
+  }
+}
+
+function clearForm() {
+  document.getElementById("name").value = "";
+  document.getElementById("details").value = "";
+  document.getElementById("type").selectedIndex = 0;
+  document.getElementById("tone").selectedIndex = 0;
+  document.getElementById("output").textContent =
+    "La risposta pronta da copiare apparirà qui.";
+}
+</script>
+</body>
+</html>
